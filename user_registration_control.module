@@ -5,6 +5,20 @@
  * Author: Brandon Smith
  */
 
+/**
+ * Implements hook_help()
+ *
+ * @return string
+ */
+
+function user_registration_control_help($path, $arg) {
+  if ($path == 'admin/help#user_registration_control') {
+    $output = 'TODO: Add documentation.';
+
+    return $output;
+  }
+}
+
 function user_registration_control_menu() {
   $items = array();
   $items['admin/config/people/user_registration_control'] = array(
