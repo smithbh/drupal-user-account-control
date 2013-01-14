@@ -1,0 +1,8 @@
+name = "User Registration Control"
+description = "Provides advanced control over user registration."
+core = "7.x"
+php = "5.x"
+version = "7.x-1.0"
+package = "User Registration Control"
+project = "user_registration_control"
+configure = admin/config/people/user_registration_control

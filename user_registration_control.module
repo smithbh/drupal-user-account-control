@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * Module: User Registration Control
+ * Author: Brandon Smith
+ */
+
+function user_registration_control_menu() {
+  $items = array();
+  $items['admin/config/people/user_registration_control'] = array(
+    'title' => 'User Registration Control',
+    'description' => 'Configure e-mail restriction settings for user registration.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('user_registration_control_admin_settings'),
+    'file' => 'user_registration_control.admin.inc',
+    'access arguments' => array('administer site configuration'),
+    'weight' => 0,
+  );
+
+  return $items;
+}
+
+
+function user_registration_control_form_user_register_form_alter(&$form, &$form_state) {
+  $form['#validate'][] = 'bhi_registration_user_register_validate';
+}
+
+function user_registration_control_user_register_validate($form, &$form_state) {
+  $config_level = variable_get('registration_email_configuration_level');
+  if ($config_level == 'basic' || $config_level == 'advanced') {
+    if ($config_level == 'basic') {
+      $domain = str_replace('.', '\.', variable_get('registration_email_allowed_domain'));
+      $expression = '/('.$domain.')$/';
+    } else if ($config_level == 'advanced') {
+      $expression = variable_get('registration_email_advanced_expression');
+    }
+    $valid_email = false;
+    $submitted_email = $form_state['values']['mail'];
+
+    // Check if valid e-mail address.
+    if (preg_match($expression, $submitted_email)) {
+      $valid_email = true;
+    }
+
+    // If the email address is not valid, set error message.
+    if (!$valid_email) {
+      form_set_error('mail', t('The e-mail address %email is not valid for this site.  %message', array('%email' => $form_state['values']['mail'], '%message' => variable_get('registration_email_error_message'))));
+    }
+  }
+}
