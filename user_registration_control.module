@@ -24,7 +24,7 @@ function user_registration_control_help($path, $arg) {
        form of a regular expression.  It can be used for a variety of reasons, including (but not limited to)
        corporate or academic internet sites, and social media networks.</p>
        <p>There are currently two levels of control available:
-       <ul><li>Basic (single domain restriction)</li><li>Advanced (Custom Regular Expression</li></ul></p>
+       <ul><li>Basic (single domain restriction)</li><li>Advanced (Custom Regular Expression)</li></ul></p>
        <h3>Basic Options</h3>
        <p>Basic settings allow registration restriction to users with a valid e-mail address for a specific
        domain (or subdomain) suffix.  For example, by specifying example.com in the settings, only
