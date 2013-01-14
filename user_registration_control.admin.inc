@@ -42,6 +42,7 @@ function user_registration_control_admin_settings() {
   $form['display']['registration_email_error_message'] = array(
     '#type' => 'textarea',
     '#title' => t('Custom error message to display upon invalid registration (<em>optional</em>):'),
+    '#description' => '<em>' . t('Note: HTML markup is not supported.') . '</em>',
     '#default_value' => variable_get('registration_email_error_message'),
   );
 
