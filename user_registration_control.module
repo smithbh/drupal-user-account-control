@@ -11,14 +11,32 @@
 
 /**
  * Implements hook_help().
- * @return help documentation.
+ * @return help documentation
  */
 function user_registration_control_help($path, $arg) {
   if ($path == 'admin/help#user_registration_control') {
     /**
      * @todo Add documentation.
      */
-    $output = 'TODO: Add documentation.';
+    $output = t('<p><strong><em>User Registration Control</em> provides a simple way to implement advanced control
+       over what user e-mail domains are allowed for registration.</strong></p>
+       <p>This module functions by applying additional required validation to the e-mail field in the
+       form of a regular expression.  It can be used for a variety of reasons, including (but not limited to)
+       corporate or academic internet sites, and social media networks.</p>
+       <p>There are currently two levels of control available:
+       <ul><li>Basic (single domain restriction)</li><li>Advanced (Custom Regular Expression</li></ul></p>
+       <h3>Basic Options</h3>
+       <p>Basic settings allow registration restriction to users with a valid e-mail address for a specific
+       domain (or subdomain) suffix.  For example, by specifying example.com in the settings, only
+       visitors with an @example.com e-mail address will be allowed to register.  Similarly, if
+       subdomain.example.com is specified, only visitors with an @subdomain.example.com address can register.</p>
+       <h3>Advanced Options</h3>
+       <p>Advanced settings allow complete control over the entire address to be validated using a
+       custom regular expression (PCRE syntax).  By using this option, the administrator has registration
+       control over both the prefix and suffix, as well as multiple variants, in e-mail address validation.</p>
+       <h3>Error Message</h3>
+       <p>An optional setting allows the display of a custom error message in the case of a registration attempt
+       with an e-mail address that is not allowed.</p>');
 
     return $output;
   }
