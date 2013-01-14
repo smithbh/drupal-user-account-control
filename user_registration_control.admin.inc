@@ -1,9 +1,14 @@
 <?php
+
 /**
- *
- *
+ * @file
+ * Administration pages provided by User Registration Control module.
  */
 
+/**
+ * Menu callback for admin/config/people/user_registration_control.
+ * @return type system_settings_form($form).
+ */
 function user_registration_control_admin_settings() {
   $registration_email_configuration_level_default_value = variable_get('registration_email_configuration_level');
   $registration_email_configuration_level_default_value = (is_null($registration_email_configuration_level_default_value)) ? 'disabled' : $registration_email_configuration_level_default_value;

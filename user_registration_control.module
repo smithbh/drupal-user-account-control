@@ -1,24 +1,33 @@
 <?php
 
 /**
- * Module: User Registration Control
- * Author: Brandon Smith
+ * This module provides a simple way to provide advanced control over
+ * what user e-mail domains are allowed for registration.
+ *
+ * The development of this module is sponsored by Astonish Design.
+ *
+ * @author Brandon Smith <brandon@astonishdesign.com>
  */
 
 /**
- * Implements hook_help()
- *
- * @return string
+ * Implements hook_help().
+ * @return help documentation.
  */
-
 function user_registration_control_help($path, $arg) {
   if ($path == 'admin/help#user_registration_control') {
+    /**
+     * @todo Add documentation.
+     */
     $output = 'TODO: Add documentation.';
 
     return $output;
   }
 }
 
+/**
+ * Implements hook_menu().
+ * @return array $items
+ */
 function user_registration_control_menu() {
   $items = array();
   $items['admin/config/people/user_registration_control'] = array(
@@ -34,11 +43,20 @@ function user_registration_control_menu() {
   return $items;
 }
 
-
+/**
+ * Implements hook_form_user_register_form_alter().
+ * @param array $form
+ * @param type $form_state
+ */
 function user_registration_control_form_user_register_form_alter(&$form, &$form_state) {
   $form['#validate'][] = 'user_registration_control_user_register_validate';
 }
 
+/**
+ * Implements hook_user_register_validate().
+ * @param type $form
+ * @param type $form_state
+ */
 function user_registration_control_user_register_validate($form, &$form_state) {
   $config_level = variable_get('registration_email_configuration_level');
   if ($config_level == 'basic' || $config_level == 'advanced') {
